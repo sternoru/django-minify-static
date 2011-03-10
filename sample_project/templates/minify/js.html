@@ -1,0 +1,29 @@
+<!-- MODIFIED to use it with headJS -->
+
+<script type="text/javascript">
+	var head_paths = [];
+	{% if is_grouped %}
+	    {% for path_group in js_paths %}
+	        {% for path in path_group %}
+	             {% if forloop.last %}
+	                 head.ready("{{ path }}", function(){});
+	             {% endif %}
+	        {% endfor %}
+	    {% endfor %}
+	    head.js(
+	    {% for path_group in js_paths %}
+	        {% for path in path_group %}
+	            "{{ path }}",
+	        {% endfor %}
+	    {% endfor %}
+	       function(){}
+	    );
+	{% else %}
+	head.js(
+	   {% for path in js_paths %}
+	        "{{ path }}",
+	   {% endfor %}
+	   function(){}
+	);
+	{% endif %}
+</script>

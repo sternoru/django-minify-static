@@ -1,0 +1,23 @@
+{% load minify_tags %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sample for django-minify</title>
+	{% css "CSS_FILES" %}
+	<script src="/media/js/head.load.min.js" type="text/javascript"></script>
+	{% js "JS_FILES" %}
+</head>
+<body>
+	<div class="wrapper">
+	    <div class="headline">
+	    	<h1>Testing <i>django-minify</i></h1>
+	    </div>
+		<div class="content">
+		   <div>Some simple tests:</div>
+		   <div><input id="fade" type="button" value="Fade in!"/></div>
+		   <div class="sample-text">Hello World!</div>
+	    </div>
+	</div>
+</body>
+</html>
