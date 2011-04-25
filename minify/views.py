@@ -21,11 +21,11 @@ def js_minify(request):
     """View to render minified/combined Javascript
     
     Params:
-    - request: a django.http.HttpRequest object
+        - ``request``: a ``django.http.HttpRequest`` object
     
     Returns:
-    - response: a django.http.HttpResponse with combined
-    and minified Javascript as its content 
+        - ``respons``e: a ``django.http.HttpResponse`` with combined
+          and minified Javascript as its content 
     """
     res = ''    
     files = []
@@ -46,11 +46,11 @@ def css_minify(request):
     """View to render minified/combined CSS
     
     Params:
-    - request: a django.http.HttpRequest object
+        - ``request``: a django.http.HttpRequest object
     
     Returns:
-    - response: a django.http.HttpResponse with combined
-    and minified CSS as its content 
+        - ``response``: a ``django.http.HttpResponse`` with combined
+          and minified CSS as its content 
     """
     res = ''
     files = [] 
@@ -65,11 +65,11 @@ def js_nominify(request):
     """View to render not minified/not combined Javascript
     
     Params:
-    - request: a django.http.HttpRequest object
+        - ``request``: a ``django.http.HttpRequest`` object
     
     Returns:
-    - response: a django.http.HttpResponse with not combined
-    and not minified Javascript as its content 
+        - response: a ``django.http.HttpResponse`` with not combined
+          and not minified Javascript as its content 
     """
     js = ''
     if 'url' in request.GET:
@@ -85,11 +85,11 @@ def css_nominify(request):
     """View to render not minified/not combined CSS
     
     Params:
-    - request: a django.http.HttpRequest object
+        - ``request``: a ``django.http.HttpRequest`` object
     
     Returns:
-    - response: a django.http.HttpResponse with not combined
-    and not minified CSS as its content 
+        - ``response``: a ``django.http.HttpResponse`` with not combined
+        and not minified CSS as its content 
     """
     css = ''
     if 'file' in request.GET:

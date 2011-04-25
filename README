@@ -18,7 +18,7 @@ Django_ >1.0 to run.
 Simply run:
 ::
     
-    python setup,py install
+    python setup.py install
     
 
 
@@ -36,11 +36,9 @@ or
     
 
 
-3. Usage
+3. Setup
 :::::::::::::::::::::::::::::::::
 
-3.1. Setup
-------------------------------
 
 If you want to use templatetags and run the tests
 you need to add *django-minify* to your INSTALLED_APPS
@@ -97,8 +95,8 @@ your main url conf. In project_dir/urls.py you can add:
     )
     
 
-3.2. Using django-minify
-------------------------------
+4. Usage
+:::::::::::::::::::::::::::::::::
 
 If you want specific files to be minified you can create
 ``<script>`` or ``<link>`` tags pointing to the *django-minify* views. 
@@ -126,8 +124,8 @@ Also if you set DEBUG to True it will not combine and minify
 the content of these files.
 
 
-3.3. Complex usage
-------------------------------
+5. Complex usage
+:::::::::::::::::::::::::::::::::
 
 Sometimes you a have lot more than just a couple Javascript-
 or CSS-files you want to use with *django-minify*. Instead
@@ -203,8 +201,8 @@ appended first and after that the files will be combined with
 it.
 
 
-3.4. Additional settings
-------------------------------
+6. Additional settings
+:::::::::::::::::::::::::::::::::
 
 For *django-minify* you can provide a couple optional settings
 to tweak it for your project. Within *django-minify* app there

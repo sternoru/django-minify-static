@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
       name='django-minify',
@@ -8,7 +8,8 @@ setup(
       author_email='sterno.beijing@gmail.com',
       url='',
       download_url='',
-      packages=['minify', 'minify.templatetags'],
+      packages=find_packages(),
+      include_package_data=True,
       classifiers=[
         'Environment :: Web Environment',
         "Programming Language :: Python",

@@ -17,16 +17,16 @@ MINIFY_PATHS = app_settings.MINIFY_PATHS
 def find_in_path(filename):
     """Utility function which is checking for given
     filename (with given subdirectories like "js/jquery.js")
-    within in app_settings.MINIFY_PATHS.
+    within in ``app_settings.MINIFY_PATHS``.
     
     Params:
-    - filename: the name of the file which is a relative
-    path within app_settings.MINIFY_PATHS
+        - ``filename``: the name of the file which is a relative
+          path within ``app_settings.MINIFY_PATHS``
     
     Returns:
-    on success: - the valid and existing absolute path
-    of the file within the file system
-    on failure: None
+        - on success: - the valid and existing absolute path
+          of the file within the file system
+        - on failure: ``None``
     """
     for minify_path in MINIFY_PATHS:
         path = os.path.join(minify_path, filename)
@@ -39,7 +39,7 @@ def read_from_file(file_path):
     a given absolute path.
     
     Params:
-    - file_path: the absolute path of the file
+        - ``file_path``: the absolute path of the file
     
     Returns:
     - the content of the file
@@ -60,12 +60,12 @@ def check_and_read_from_file(request, filename):
     using urllib2.urlopen.
     
     Params:
-    - request: a django.http.HttpRequest object
-    - filename: relative file path within app_settings.MINIFY_PATHS
+        - ``request``: a ``django.http.HttpRequest object``
+        - ``filename``: relative file path within ``app_settings.MINIFY_PATHS``
     
     Returns:
-    on success: content of the file
-    on failure: empty string ''
+        - on success: content of the file
+        - on failure: empty string ''
     """
     if filename.startswith('/') or filename.startswith('http://'):
         if filename.startswith('/'):
@@ -80,16 +80,16 @@ def check_and_read_from_file(request, filename):
 
 def minify_from_files(request, filenames, minifier):
     """Utility function to minify and combine a
-    list of relative filenames within app_settings.MINIFY_PATHS
+    list of relative filenames within ``app_settings.MINIFY_PATHS``
     
     Params:
-    - request: a django.http.HttpRequest object
-    - filenames: a list of relative filenames within
-     app_settings.MINIFY_PATHS
-     - minifier: the function which is used to minify the content
+        - ``request``: a ``django.http.HttpRequest object``
+        - ``filenames``: a list of relative filenames within
+           ``app_settings.MINIFY_PATHS``
+         - ``minifier``: the function which is used to minify the content
      
      Returns:
-     - a the combined and minified content of files from filenames
+        - a the combined and minified content of files from filenames
     """
     minified_content = []
     for filename in filenames:
@@ -102,12 +102,12 @@ def minify_js_from_files(request, filenames):
     given filenames.
     
     Params:
-    - request: a django.http.HttpRequest object
-    - filenames: a list of filenames or file paths within
-    app_settings.MINIFY_JS_PATH
+        - ``request``: a django.http.HttpRequest object
+        - ``filenames``: a list of filenames or file paths within
+           ``app_settings.MINIFY_JS_PATH``
     
     Returns:
-    - minified and combined content from Javascript files
+        - minified and combined content from Javascript files
     """
     return minify_from_files(request, filenames, minifier=minify_js)
 
@@ -116,12 +116,12 @@ def minify_css_from_files(request, filenames):
     given filenames.
     
     Params:
-    - request: a django.http.HttpRequest object
-    - filenames: a list of filenames or file paths within
-    app_settings.MINIFY_CSS_PATH
+        - ``request``: a django.http.HttpRequest object
+        - ``filenames``: a list of filenames or file paths within
+          ``app_settings.MINIFY_CSS_PATH``
     
     Returns:
-    - minified and combined content from CSS files
+        - minified and combined content from CSS files
     """
     return minify_from_files(request, filenames, minifier=minify_css)
 
@@ -129,11 +129,11 @@ def minify_js(file_content):
     """Minifies Javascript content using JSMin
     
     Params:
-    - filename: the filename of the Javascript file
-    within app_settings.MINIFY_JS_PATH
+        - ``filename``: the filename of the Javascript file
+          within ``app_settings.MINIFY_JS_PATH``
     
     Returns:
-    - minified Javascript content
+         - minified Javascript content
     """
     return jsmin(file_content)
 
@@ -142,13 +142,13 @@ def minify_js_from_url(request, url, nominify=False):
     minify its response content.
     
     Params:
-    - request: a django.http.HttpRequest
-    - url: url of a view which returns a text/javascript response
-    - nominify: a flag if this response content should be
-    minified or not
+        - ``request``: a ``django.http.HttpRequest``
+        - ``url``: url of a view which returns a text/javascript response
+        - ``nominify`` (optional): a flag if this response content should be
+          minified or not
     
     Returns:
-    - minified or not minified Javascript content from a view
+        - minified or not minified Javascript content from a view
     """
     url_split = request.GET['url'].split('?')
     url = url_split[0]
@@ -171,11 +171,11 @@ def minify_css(file_content):
     """Minifies CSS content
     
     Params:
-    - filename: the filename of the css file
-    within app_settings.MINIFY_CSS_PATH
+        - ``filename``: the filename of the css file
+          within ``app_settings.MINIFY_CSS_PATH``
     
     Returns:
-    - minified CSS content
+        - minified CSS content
     """   
     return file_content.replace('\t', '').replace('\n', '').replace(', ', ',').replace(': ', ':').replace(' {', '{').replace('} ', '}')
 
@@ -184,13 +184,13 @@ def nominify_from_files(request, filenames):
     of the files given in filenames.
     
     Params:
-    - request: a django.http.HttpRequest object
-    - filenames: a list of filenames or file paths within
-    app_settings.MINIFY_CSS_PATH
+        - ``request``: a django.http.HttpRequest object
+        - ``filenames``: a list of filenames or file paths within
+          ``app_settings.MINIFY_CSS_PATH``
     
     ReturnsL
-    - combined but not minified file content from given
-    files in filenames
+        - combined but not minified file content from given
+          files in filenames
     """
     not_minified_content = []
     for filename in filenames:
@@ -204,12 +204,12 @@ def nominify_js_from_files(request, filenames):
     used by other apps which need it.
     
      Params:
-     - request: a django.http.HttpRequest object
-    - filenames: a list of filenames or file paths within
-    app_settings.MINIFY_JS_PATH
+         - ``request``: a django.http.HttpRequest object
+        - ``filenames``: a list of filenames or file paths within
+          ``app_settings.MINIFY_JS_PATH``
     
     Returns:
-    - not minified (but combined) Javascript
+        - not minified (but combined) Javascript
     """
     return nominify_from_files(request, filenames)
 
@@ -219,11 +219,11 @@ def nominify_css_from_files(request, filenames):
     used by other apps which need it.
     
      Params:
-     - request: a django.http.HttpRequest object
-    - filenames: a list of filenames or file paths within
-    app_settings.MINIFY_CSS_PATH
+         - ``request``: a django.http.HttpRequest object
+        - ``filenames``: a list of filenames or file paths within
+          ``app_settings.MINIFY_CSS_PATH``
     
     Returns:
-    - not minified (but combined) CSS
+        - not minified (but combined) CSS
     """
     return nominify_from_files(request, filenames)
